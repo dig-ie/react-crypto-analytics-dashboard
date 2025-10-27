@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { Crypto } from "@/types/crypto";
+import { cryptoCoins } from "@/components/Mocks/crypto-coins";
 
 interface CryptoState {
   cryptos: Crypto[];
@@ -7,6 +8,6 @@ interface CryptoState {
 }
 
 export const useCryptoStore = create<CryptoState>((set) => ({
-  cryptos: [],
+  cryptos: cryptoCoins,
   setCryptos: (data) => set({ cryptos: data }),
 }));
