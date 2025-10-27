@@ -9,49 +9,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useEffect } from "react";
 import { useCryptoStore } from "@/store/useCryptoStore";
 import type { Crypto } from "@/types/crypto";
+import { useCryptoRealtime } from "@/hooks/useCryptoRealtime";
 
 export function SectionCards() {
-  const { cryptos, setCryptos } = useCryptoStore();
-
-  useEffect(() => {
-    setCryptos([
-      {
-        id: "bitcoin",
-        name: "Bitcoin (BTC)",
-        priceUsd: 63542.12,
-        changePercent24Hr: 2.84,
-        volumeUsd24Hr: 28_400_000_000,
-        statusText: "Price rising in the last hour",
-      },
-      {
-        id: "ethereum",
-        name: "Ethereum (ETH)",
-        priceUsd: 2472.31,
-        changePercent24Hr: -1.22,
-        volumeUsd24Hr: 14_100_000_000,
-        statusText: "Slight dip in the last 15 min",
-      },
-      {
-        id: "solana",
-        name: "Solana (SOL)",
-        priceUsd: 142.58,
-        changePercent24Hr: 5.33,
-        volumeUsd24Hr: 2_800_000_000,
-        statusText: "Strong bullish momentum",
-      },
-      {
-        id: "dogecoin",
-        name: "Dogecoin (DOGE)",
-        priceUsd: 0.1642,
-        changePercent24Hr: 0.76,
-        volumeUsd24Hr: 600_000_000,
-        statusText: "Small but steady growth",
-      },
-    ]);
-  }, [setCryptos]);
+  useCryptoRealtime();
+  const { cryptos } = useCryptoStore();
 
   return (
     <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
